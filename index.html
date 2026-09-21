@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NURIVO — Overnight Lip Care</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FFFFFF;
+  --bg2:#F8F5F2;
+  --text:#1A1716;
+  --text2:#6F6662;
+  --btn:#1A1716;
+  --btnText:#FFFFFF;
+  --accent:#D9A6A1;
+  --accentLight:#F3E1DE;
+  --border:#E7E1DE;
+  --radius-lg:28px;
+  --radius-md:18px;
+  --radius-pill:999px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;line-height:1.6;overflow-x:hidden}
+.serif{font-family:'Instrument Serif',serif}
+i.serif{font-style:italic}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+img{display:block;max-width:100%}
+.container{width:min(1180px,calc(100% - 40px));margin-inline:auto}
+@media(max-width:640px){.container{width:min(1180px,calc(100% - 32px))}}
+
+/* announcement */
+.announce{background:var(--text);color:var(--bg);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;display:flex;align-items:center;justify-content:center;height:36px;gap:16px}
+.announce span.dot{width:3px;height:3px;background:var(--accent);border-radius:50%;display:inline-block}
+
+/* header */
+header{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.header-inner{height:68px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:'Instrument Serif',serif;font-size:26px;letter-spacing:-.02em;line-height:1}
+.logo span{font-style:italic;font-weight:400}
+.nav{display:flex;gap:28px;align-items:center}
+.nav a{font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:500;color:var(--text2);transition:.2s}
+.nav a:hover{color:var(--text)}
+.nav a.active{color:var(--text);text-decoration:underline;text-underline-offset:6px}
+.header-actions{display:flex;align-items:center;gap:12px}
+.icon-btn{width:36px;height:36px;border-radius:50%;border:1px solid var(--border);display:grid;place-items:center;transition:.2s}
+.icon-btn:hover{border-color:var(--text)}
+.btn-primary{background:var(--btn);color:var(--btnText);padding:0 22px;height:40px;border-radius:var(--radius-pill);font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:.2s}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(26,23,22,.15)}
+.btn-secondary{border:1px solid var(--border);height:40px;padding:0 22px;border-radius:var(--radius-pill);font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;display:inline-flex;align-items:center;justify-content:center;transition:.2s;background:var(--bg)}
+.btn-secondary:hover{border-color:var(--text)}
+.cart-count{position:absolute;top:-4px;right:-4px;background:var(--accent);color:var(--text);font-size:10px;font-weight:700;width:18px;height:18px;border-radius:50%;display:grid;place-items:center}
+.hamburger{display:none}
+@media(max-width:900px){
+  .nav{display:none}
+  .hamburger{display:grid}
+  .header-actions .btn-primary.hide-m{display:none}
+}
+
+/* hero */
+.hero{padding:24px 0 56px}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+.eyebrow{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--text2);display:flex;align-items:center;gap:10px;margin-bottom:20px}
+.eyebrow:before{content:'';width:28px;height:1px;background:var(--border);display:block}
+.hero h1{font-family:'Instrument Serif',serif;font-size:clamp(44px,6vw,72px);line-height:.92;letter-spacing:-.03em;font-weight:400;margin-bottom:18px}
+.hero h1 i{color:var(--accent);font-weight:400}
+.hero p.sub{font-size:17px;line-height:1.6;color:var(--text2);max-width:44ch;margin-bottom:28px;font-weight:300}
+.hero-ctas{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:28px}
+.hero-proof{display:flex;align-items:center;gap:14px;padding-top:18px;border-top:1px solid var(--border);max-width:420px}
+.stars{color:var(--text);letter-spacing:2px;font-size:12px}
+.hero-proof small{font-size:12px;color:var(--text2);line-height:1.4}
+.hero-visual{position:relative;background:var(--bg2);border:1px solid var(--border);border-radius:32px;padding:18px;aspect-ratio:4/4.6;overflow:hidden}
+.hero-visual-inner{width:100%;height:100%;background:#fff;border-radius:22px;overflow:hidden;position:relative;display:grid;place-items:center;border:1px solid var(--border)}
+.hero-visual img{width:100%;height:100%;object-fit:cover;mix-blend:multiply}
+.hero-visual-badge{position:absolute;left:16px;bottom:16px;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-pill);padding:8px 12px;display:flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;box-shadow:0 8px 24px rgba(0,0,0,.06)}
+.hero-visual-badge b{width:24px;height:24px;background:var(--text);color:#fff;border-radius:50%;display:grid;place-items:center;font-size:10px}
+.float-card{position:absolute;right:-12px;top:22%;background:var(--bg);border:1px solid var(--border);border-radius:16px;padding:12px 14px;box-shadow:0 12px 32px rgba(0,0,0,.08);display:flex;gap:10px;align-items:center;min-width:168px}
+.float-card .dot{width:36px;height:36px;background:var(--accentLight);border-radius:50%;display:grid;place-items:center;color:var(--text);font-family:'Instrument Serif',serif;font-size:18px}
+.float-card strong{font-size:12px;display:block;line-height:1.2}
+.float-card span{font-size:11px;color:var(--text2)}
+@media(max-width:900px){
+  .hero-grid{grid-template-columns:1fr;gap:28px}
+  .hero-visual{aspect-ratio:1/1;order:-1}
+  .float-card{right:8px;top:12%}
+}
+
+/* social proof */
+.social{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:18px 0}
+.social-inner{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.social-label{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--text2)}
+.social-logos{display:flex;gap:28px;align-items:center;flex-wrap:wrap;opacity:.6}
+.social-logos span{font-family:'Instrument Serif',serif;font-size:20px;letter-spacing:-.02em}
+.social-logos span i{font-style:italic}
+
+/* benefits */
+.benefits{padding:88px 0}
+.section-head{text-align:center;max-width:560px;margin:0 auto 48px}
+.section-head h2{font-family:'Instrument Serif',serif;font-size:clamp(32px,4.5vw,48px);line-height:.95;letter-spacing:-.02em;margin-bottom:14px;font-weight:400}
+.section-head p{color:var(--text2);font-size:15px;font-weight:300}
+.benefit-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.b-card{border:1px solid var(--border);border-radius:20px;padding:22px 20px;background:var(--bg);transition:.3s}
+.b-card:hover{border-color:var(--text);transform:translateY(-2px)}
+.b-icon{width:40px;height:40px;border-radius:50%;background:var(--bg2);border:1px solid var(--border);display:grid;place-items:center;margin-bottom:16px;font-size:16px}
+.b-card h4{font-size:14px;letter-spacing:.02em;margin-bottom:6px;font-weight:600}
+.b-card p{font-size:13px;color:var(--text2);line-height:1.5;font-weight:300}
+@media(max-width:900px){.benefit-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:540px){.benefit-grid{grid-template-columns:1fr}}
+
+/* product showcase */
+.product-show{padding:32px 0 88px}
+.product-panel{display:grid;grid-template-columns:.95fr 1.05fr;gap:0;border:1px solid var(--border);border-radius:28px;overflow:hidden;background:var(--bg)}
+.product-media{background:var(--bg2);padding:28px;display:grid;place-items:center;position:relative}
+.product-media img{width:100%;max-width:420px;aspect-ratio:1/1;object-fit:cover;border-radius:20px;border:1px solid var(--border);mix-blend:multiply;background:#fff}
+.media-thumbs{display:flex;gap:8px;margin-top:16px;justify-content:center}
+.media-thumbs button{width:56px;height:56px;border-radius:12px;border:1px solid var(--border);overflow:hidden;opacity:.6;transition:.2s;background:#fff}
+.media-thumbs button.active{opacity:1;border-color:var(--text)}
+.product-info{padding:36px 32px 28px}
+.kicker{font-size:10px;letter-spacing:.18em;text-transform:uppercase;background:var(--accentLight);color:var(--text);padding:6px 10px;border-radius:var(--radius-pill);display:inline-block;margin-bottom:16px;font-weight:600}
+.product-info h3{font-family:'Instrument Serif',serif;font-size:32px;line-height:.95;margin-bottom:10px}
+.meta-row{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.meta-row .price{font-size:22px;font-weight:600}
+.meta-row .compare{font-size:13px;color:var(--text2);text-decoration:line-through}
+.meta-row .save{font-size:11px;background:var(--text);color:#fff;padding:4px 8px;border-radius:var(--radius-pill);letter-spacing:.06em}
+.desc{font-size:14px;color:var(--text2);line-height:1.6;font-weight:300;margin-bottom:20px}
+.bundle-inline{display:grid;gap:10px;margin-bottom:20px}
+.bundle-option{border:1px solid var(--border);border-radius:14px;padding:14px 14px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:.2s;background:var(--bg)}
+.bundle-option.selected{border-color:var(--text);background:var(--bg2);box-shadow:0 0 0 1px var(--text) inset}
+.bundle-option .left{display:flex;align-items:center;gap:12px}
+.radio{width:18px;height:18px;border:1.5px solid var(--border);border-radius:50%;display:grid;place-items:center;transition:.2s}
+.bundle-option.selected .radio{border-color:var(--text)}
+.radio:after{content:'';width:8px;height:8px;background:var(--text);border-radius:50%;opacity:0;transform:scale(.5);transition:.2s}
+.bundle-option.selected .radio:after{opacity:1;transform:scale(1)}
+.bundle-option strong{font-size:13px;display:block}
+.bundle-option small{font-size:11px;color:var(--text2)}
+.qty-add{display:flex;gap:10px;align-items:center}
+.qty{border:1px solid var(--border);border-radius:var(--radius-pill);display:flex;align-items:center;height:48px;padding:0 6px}
+.qty button{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;transition:.2s}
+.qty button:hover{background:var(--bg2)}
+.qty span{width:32px;text-align:center;font-size:14px;font-weight:600}
+.add-btn{flex:1;height:48px}
+.ship-note{font-size:11px;color:var(--text2);margin-top:12px;display:flex;gap:6px;align-items:center}
+.ship-note i{width:14px;height:14px;border:1px solid var(--border);border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:8px}
+@media(max-width:900px){.product-panel{grid-template-columns:1fr}}
+
+/* how it works */
+.how{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:88px 0}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:48px}
+.step-card{background:var(--bg);border:1px solid var(--border);border-radius:20px;padding:22px 20px;position:relative;overflow:hidden}
+.step-num{font-family:'Instrument Serif',serif;font-size:56px;line-height:1;color:var(--accent);margin-bottom:12px}
+.step-card h4{font-size:14px;font-weight:600;margin-bottom:6px}
+.step-card p{font-size:13px;color:var(--text2);font-weight:300;line-height:1.5}
+.step-visual{height:96px;background:linear-gradient(180deg,var(--accentLight),#fff);border:1px dashed var(--border);border-radius:12px;margin-top:14px;display:grid;place-items:center;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text2)}
+@media(max-width:900px){.steps{grid-template-columns:1fr 1fr}}
+@media(max-width:540px){.steps{grid-template-columns:1fr}}
+
+/* comparison */
+.compare-sec{padding:88px 0}
+.compare-table{max-width:820px;margin:40px auto 0;border:1px solid var(--border);border-radius:20px;overflow:hidden;display:grid;grid-template-columns:1.2fr .9fr .9fr;background:var(--bg)}
+.compare-head{padding:18px 20px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--text2);border-bottom:1px solid var(--border);background:var(--bg2)}
+.compare-row{display:contents}
+.compare-row>div{padding:16px 20px;border-bottom:1px solid var(--border);font-size:13px;display:flex;align-items:center}
+.compare-row>div:first-child{color:var(--text2);font-weight:400}
+.compare-row>div:nth-child(2){justify-content:center;color:var(--text2)}
+.compare-row>div:last-child{background:rgba(243,225,222,.4);justify-content:center;font-weight:600}
+.badge-yes{width:22px;height:22px;background:var(--text);color:#fff;border-radius:50%;display:grid;place-items:center;font-size:11px}
+.badge-no{width:22px;height:22px;background:var(--bg2);border:1px solid var(--border);color:var(--text2);border-radius:50%;display:grid;place-items:center;font-size:10px}
+.compare-foot{max-width:820px;margin:12px auto 0;font-size:11px;color:var(--text2);text-align:center;font-weight:300}
+
+/* ingredients */
+.ingredients{padding:88px 0;background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.ing-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:40px;align-items:center}
+.ing-media{background:var(--bg);border:1px solid var(--border);border-radius:24px;padding:16px;aspect-ratio:4/3;display:grid;place-items:center;overflow:hidden}
+.ing-media img{width:100%;height:100%;object-fit:cover;border-radius:16px;mix-blend:multiply}
+.ing-list{display:grid;gap:16px}
+.ing-card{background:var(--bg);border:1px solid var(--border);border-radius:16px;padding:18px 18px;display:flex;gap:14px;align-items:flex-start}
+.ing-icon{width:44px;height:44px;border-radius:50%;background:var(--accentLight);display:grid;place-items:center;flex-shrink:0;font-family:'Instrument Serif',serif;font-size:20px}
+.ing-card h4{font-size:14px;font-weight:600;margin-bottom:4px}
+.ing-card p{font-size:13px;color:var(--text2);font-weight:300;line-height:1.5}
+@media(max-width:900px){.ing-grid{grid-template-columns:1fr}}
+
+/* why */
+.why{padding:88px 0}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;max-width:960px;margin:0 auto}
+.why-list{display:grid;gap:14px}
+.why-item{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;border:1px solid var(--border);border-radius:14px;background:var(--bg)}
+.why-item .check{width:22px;height:22px;background:var(--text);color:#fff;border-radius:50%;display:grid;place-items:center;font-size:11px;flex-shrink:0;margin-top:2px}
+.why-item strong{font-size:13px;display:block;margin-bottom:2px}
+.why-item span{font-size:12px;color:var(--text2);font-weight:300}
+.why-note{background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:24px}
+.why-note h4{font-family:'Instrument Serif',serif;font-size:22px;margin-bottom:8px}
+.why-note p{font-size:13px;color:var(--text2);font-weight:300;line-height:1.6}
+@media(max-width:800px){.why-grid{grid-template-columns:1fr}}
+
+/* bundle highlight */
+.bundle-sec{padding:0 0 88px}
+.bundle-panel{border:1px solid var(--border);border-radius:28px;overflow:hidden;background:var(--bg);display:grid;grid-template-columns:1.1fr .9fr}
+.bundle-left{padding:32px;background:var(--bg2);border-right:1px solid var(--border)}
+.bundle-left h3{font-family:'Instrument Serif',serif;font-size:32px;line-height:.95;margin-bottom:12px}
+.bundle-options{display:grid;gap:12px;margin-top:20px}
+.bundle-opt{border:1px solid var(--border);border-radius:16px;padding:16px;display:flex;align-items:center;justify-content:space-between;background:var(--bg);cursor:pointer;transition:.2s;position:relative}
+.bundle-opt.popular{border-color:var(--text);box-shadow:0 0 0 1px var(--text) inset;background:var(--bg)}
+.bundle-opt.popular:before{content:'Most Popular';position:absolute;top:-10px;left:16px;background:var(--text);color:#fff;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:4px 8px;border-radius:var(--radius-pill)}
+.bundle-opt .price{font-weight:700;font-size:15px}
+.bundle-opt small{font-size:11px;color:var(--text2)}
+.bundle-right{padding:32px;display:flex;flex-direction:column;justify-content:center}
+.bundle-right ul{list-style:none;display:grid;gap:10px;margin:18px 0 24px}
+.bundle-right li{display:flex;gap:10px;align-items:center;font-size:13px;color:var(--text2)}
+.bundle-right li i{width:20px;height:20px;border-radius:50%;background:var(--accentLight);display:grid;place-items:center;font-style:normal;font-size:10px;color:var(--text)}
+@media(max-width:900px){.bundle-panel{grid-template-columns:1fr}.bundle-left{border-right:none;border-bottom:1px solid var(--border)}}
+
+/* reviews */
+.reviews{padding:88px 0;background:var(--bg);border-top:1px solid var(--border)}
+.review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:36px}
+.r-card{border:1px solid var(--border);border-radius:16px;padding:18px;background:var(--bg);display:flex;flex-direction:column;gap:12px}
+.r-top{display:flex;align-items:center;justify-content:space-between}
+.r-stars{font-size:11px;letter-spacing:1px}
+.r-date{font-size:11px;color:var(--text2)}
+.r-text{font-size:13px;line-height:1.6;font-weight:300}
+.r-author{display:flex;align-items:center;gap:10px;margin-top:auto;padding-top:10px;border-top:1px solid var(--border)}
+.r-avatar{width:28px;height:28px;border-radius:50%;background:var(--accentLight);display:grid;place-items:center;font-size:11px;font-weight:600}
+.r-author strong{font-size:12px}
+.r-author span{font-size:11px;color:var(--text2)}
+@media(max-width:900px){.review-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.review-grid{grid-template-columns:1fr}}
+
+/* guarantee + shipping */
+.info-duo{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.info-box{padding:40px 28px;display:flex;gap:16px;align-items:flex-start}
+.info-box:first-child{border-right:1px solid var(--border)}
+.info-icon{width:44px;height:44px;border-radius:50%;background:var(--bg2);border:1px solid var(--border);display:grid;place-items:center;flex-shrink:0}
+.info-box h4{font-size:14px;font-weight:600;margin-bottom:4px}
+.info-box p{font-size:13px;color:var(--text2);font-weight:300;line-height:1.5}
+@media(max-width:700px){.info-duo{grid-template-columns:1fr}.info-box:first-child{border-right:none;border-bottom:1px solid var(--border)}}
+
+/* faq */
+.faq{padding:88px 0;background:var(--bg2)}
+.faq-inner{max-width:760px;margin:0 auto}
+.faq-list{margin-top:32px;border:1px solid var(--border);border-radius:20px;overflow:hidden;background:var(--bg)}
+.faq-item{border-bottom:1px solid var(--border)}
+.faq-item:last-child{border-bottom:none}
+.faq-q{width:100%;text-align:left;padding:18px 20px;display:flex;justify-content:space-between;align-items:center;gap:16px;font-size:14px;font-weight:500}
+.faq-q span.icon{width:24px;height:24px;border-radius:50%;border:1px solid var(--border);display:grid;place-items:center;transition:.2s;flex-shrink:0}
+.faq-item.open .faq-q span.icon{transform:rotate(45deg);background:var(--text);color:#fff;border-color:var(--text)}
+.faq-a{max-height:0;overflow:hidden;transition:.35s ease;padding:0 20px}
+.faq-item.open .faq-a{max-height:300px;padding:0 20px 18px}
+.faq-a p{font-size:13px;color:var(--text2);line-height:1.6;font-weight:300}
+
+/* final cta */
+.final{padding:88px 0;text-align:center}
+.final-card{max-width:860px;margin:0 auto;background:var(--text);color:var(--bg);border-radius:28px;padding:64px 32px;position:relative;overflow:hidden}
+.final-card:before{content:'';position:absolute;inset:0;background:radial-gradient(600px 300px at 70% -10%,rgba(217,166,161,.35),transparent)}
+.final-card h2{font-family:'Instrument Serif',serif;font-size:clamp(32px,5vw,52px);line-height:.9;letter-spacing:-.02em;position:relative}
+.final-card h2 i{color:var(--accent);font-weight:400}
+.final-card p{color:rgba(255,255,255,.7);font-size:15px;font-weight:300;margin:16px auto 24px;max-width:44ch;position:relative}
+.final-card .btn-primary{background:var(--bg);color:var(--text)}
+.final-card .btn-primary:hover{background:#fff}
+
+/* footer */
+footer{background:var(--bg2);border-top:1px solid var(--border);padding:48px 0 24px}
+.footer-grid{display:grid;grid-template-columns:1.4fr .7fr .7fr 1fr;gap:32px}
+.footer-brand .logo{margin-bottom:12px;display:block}
+.footer-brand p{font-size:13px;color:var(--text2);font-weight:300;line-height:1.6;max-width:28ch}
+.foot-links h5{font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px}
+.foot-links ul{list-style:none;display:grid;gap:8px}
+.foot-links a{font-size:13px;color:var(--text2);transition:.2s}
+.foot-links a:hover{color:var(--text)}
+.newsletter{display:flex;gap:8px;margin-top:12px}
+.newsletter input{flex:1;height:40px;border:1px solid var(--border);border-radius:var(--radius-pill);padding:0 14px;font-size:13px;background:var(--bg);outline:none}
+.newsletter input:focus{border-color:var(--text)}
+.foot-bottom{margin-top:40px;padding-top:20px;border-top:1px solid var(--border);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:11px;color:var(--text2);letter-spacing:.04em}
+@media(max-width:900px){.footer-grid{grid-template-columns:1fr 1fr}.footer-brand{grid-column:1/-1}}
+@media(max-width:560px){.footer-grid{grid-template-columns:1fr}}
+
+/* cart drawer */
+.overlay{position:fixed;inset:0;background:rgba(26,23,22,.4);backdrop-filter:blur(2px);opacity:0;pointer-events:none;transition:.3s;z-index:60}
+.overlay.open{opacity:1;pointer-events:auto}
+.cart-drawer{position:fixed;top:0;right:0;height:100dvh;width:min(420px,100vw);background:var(--bg);border-left:1px solid var(--border);z-index:70;transform:translateX(100%);transition:.4s cubic-bezier(.16,1,.3,1);display:flex;flex-direction:column}
+.cart-drawer.open{transform:translateX(0)}
+.cart-head{padding:20px 20px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.cart-head h4{font-size:14px;letter-spacing:.08em;text-transform:uppercase;font-weight:600}
+.cart-body{flex:1;overflow:auto;padding:16px;display:grid;gap:12px;align-content:start}
+.empty{padding:40px 20px;text-align:center;color:var(--text2);font-size:13px;font-weight:300}
+.c-item{border:1px solid var(--border);border-radius:14px;padding:12px;display:flex;gap:12px;align-items:center}
+.c-item img{width:56px;height:56px;border-radius:10px;border:1px solid var(--border);object-fit:cover;background:var(--bg2)}
+.c-item-info{flex:1}
+.c-item-info strong{font-size:13px;display:block}
+.c-item-info small{font-size:11px;color:var(--text2)}
+.c-qty{display:flex;align-items:center;gap:6px;border:1px solid var(--border);border-radius:var(--radius-pill);padding:2px 6px}
+.c-qty button{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:12px}
+.c-qty button:hover{background:var(--bg2)}
+.cart-foot{padding:16px 20px;border-top:1px solid var(--border);display:grid;gap:12px;background:var(--bg2)}
+.cart-foot .row{display:flex;justify-content:space-between;font-size:13px}
+.cart-foot .row.total{font-weight:700;font-size:15px}
+
+/* toast */
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:var(--text);color:#fff;padding:12px 18px;border-radius:var(--radius-pill);font-size:12px;letter-spacing:.04em;display:flex;align-items:center;gap:10px;opacity:0;pointer-events:none;transition:.35s;z-index:80;box-shadow:0 12px 32px rgba(0,0,0,.2)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast i{width:20px;height:20px;background:#fff;color:var(--text);border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:11px}
+
+/* mobile menu */
+.mobile-menu{position:fixed;inset:68px 0 0 0;background:var(--bg);z-index:50;transform:translateY(-8px);opacity:0;pointer-events:none;transition:.3s;padding:24px;border-top:1px solid var(--border)}
+.mobile-menu.open{transform:translateY(0);opacity:1;pointer-events:auto}
+.mobile-menu a{display:block;padding:16px 0;border-bottom:1px solid var(--border);font-size:14px;letter-spacing:.08em;text-transform:uppercase}
+</style>
+</head>
+<body>
+
+<div class="announce">Free Worldwide Tracked Shipping <span class="dot"></span> 30-Day Money-Back Guarantee</div>
+
+<header>
+  <div class="container header-inner">
+    <a href="#" class="logo">NURIVO<span>.</span></a>
+    <nav class="nav">
+      <a href="#shop" class="active">Shop</a>
+      <a href="#how-it-works">How It Works</a>
+      <a href="#ingredients">Our Story</a>
+      <a href="#faq">FAQ</a>
+      <a href="#footer">Contact</a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-btn" aria-label="Search">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="11" cy="11" r="6"/><path d="M21 21l-3.5-3.5"/></svg>
+      </button>
+      <button class="icon-btn" id="cartBtn" style="position:relative" aria-label="Cart">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M6 7h12l-1 12H7L6 7z"/><path d="M9 7V5a3 3 0 0 1 6 0v2"/></svg>
+        <span class="cart-count" id="cartCount" style="display:none">0</span>
+      </button>
+      <a href="#shop" class="btn-primary hide-m">Shop Now</a>
+      <button class="icon-btn hamburger" id="menuBtn" aria-label="Menu">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#shop">Shop</a>
+    <a href="#how-it-works">How It Works</a>
+    <a href="#ingredients">Our Story</a>
+    <a href="#faq">FAQ</a>
+    <a href="#footer">Contact</a>
+    <div style="margin-top:20px"><a href="#shop" class="btn-primary" style="width:100%">Shop Now — $32</a></div>
+  </div>
+</header>
+
+<main>
+<!-- HERO -->
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <div class="eyebrow">Overnight Lip Ritual • No Needles</div>
+      <h1>Plumper-Looking Lips.<br><i class="serif">Overnight.</i></h1>
+      <p class="sub">Discover a simple overnight lip-care ritual designed to leave your lips looking softer, smoother and more defined — while you sleep.</p>
+      <div class="hero-ctas">
+        <a href="#shop" class="btn-primary" style="height:48px;padding:0 26px">Shop Nurivo — $32</a>
+        <a href="#how-it-works" class="btn-secondary" style="height:48px">How It Works</a>
+      </div>
+      <div class="hero-proof">
+        <div>
+          <div class="stars">★★★★★</div>
+          <small><b style="color:var(--text)">4.8/5</b> from 2,417 reviews • Dermatologist-tested • Vegan & cruelty-free</small>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-visual-inner">
+        <img src="https://www.designarena.ai/u/ef364254-72f1-4fa9-aa7b-030f9c3fcee4" alt="NURIVO Plump Tape pouch">
+        <div class="hero-visual-badge"><b>30</b> NURIVO • 30-Night Supply</div>
+      </div>
+      <div class="float-card">
+        <div class="dot">◐</div>
+        <div><strong>Soft by morning</strong><span>cosmetic, temporary</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL -->
+<section class="social">
+  <div class="container social-inner">
+    <div class="social-label">Trusted by beauty lovers</div>
+    <div class="social-logos">
+      <span>VOGUE <i>edit</i></span>
+      <span>Cosmopolitan</span>
+      <span>Allure</span>
+      <span>ELLE</span>
+      <span>BYRDIE</span>
+    </div>
+    <div class="social-label">30-night guarantee • Free tracked shipping</div>
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<section class="benefits" id="benefits">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow" style="justify-content:center">Your Overnight Lip Ritual</div>
+      <h2>Care that works <i class="serif" style="color:var(--accent)">while you rest</i></h2>
+      <p>NURIVO Plump Tape is a soft, skin-friendly lip tape infused with collagen, hyaluronic acid and vitamin E — designed to hold moisture close to your lips overnight.</p>
+    </div>
+    <div class="benefit-grid">
+      <div class="b-card">
+        <div class="b-icon">◐</div>
+        <h4>Plumper-looking lips</h4>
+        <p>Helps lips appear more defined and cushioned by morning. Temporary cosmetic effect.</p>
+      </div>
+      <div class="b-card">
+        <div class="b-icon">♡</div>
+        <h4>Softer-looking lips</h4>
+        <p>Occlusive tape + hydrators work to leave lips feeling conditioned, not tight or flaky.</p>
+      </div>
+      <div class="b-card">
+        <div class="b-icon">☾</div>
+        <h4>Overnight care</h4>
+        <p>Four seconds before bed. Peel, apply, sleep. No extra steps, no mess.</p>
+      </div>
+      <div class="b-card">
+        <div class="b-icon">✦</div>
+        <h4>No needles</h4>
+        <p>A needle-free, fully reversible cosmetic ritual. No downtime, no appointments.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCT SHOWCASE -->
+<section class="product-show" id="shop">
+  <div class="container">
+    <div class="product-panel">
+      <div class="product-media">
+        <img id="mainProdImg" src="https://www.designarena.ai/u/ef364254-72f1-4fa9-aa7b-030f9c3fcee4" alt="NURIVO">
+        <div class="media-thumbs">
+          <button class="active" data-img="https://www.designarena.ai/u/ef364254-72f1-4fa9-aa7b-030f9c3fcee4"> <img src="https://www.designarena.ai/u/ef364254-72f1-4fa9-aa7b-030f9c3fcee4" style="width:100%;height:100%;object-fit:cover"> </button>
+          <button data-img="https://www.designarena.ai/u/ef364254-72f1-4fa9-aa7b-030f9c3fcee4"><img src="https://www.designarena.ai/u/ef364254-72f1-4fa9-aa7b-030f9c3fcee4" style="width:100%;height:100%;object-fit:cover;filter:sepia(.3)"></button>
+          <button data-img="https://www.designarena.ai/u/ef364254-72f1-4fa9-aa7b-030f9c3fcee4"><img src="https://www.designarena.ai/u/ef364254-72f1-4fa9-aa7b-030f9c3fcee4" style="width:100%;height:100%;object-fit:cover;filter:grayscale(1)"></button>
+        </div>
+      </div>
+      <div class="product-info">
+        <span class="kicker">Bestseller • 30 Tapes</span>
+        <h3>NURIVO Plump Tape</h3>
+        <div class="meta-row">
+          <div class="price" id="singlePrice">$32.00</div>
+          <div class="compare">$40.00</div>
+          <div class="save">Save 20%</div>
+        </div>
+        <p class="desc">One pouch = 30 single-use lip-shaped tapes. Infused with collagen, hyaluronic acid and vitamin E. Latex-free adhesive stays put overnight, peels cleanly in the morning. Results are cosmetic and temporary.</p>
+        
+        <div class="bundle-inline" id="inlineBundle">
+          <div class="bundle-option selected" data-qty="1" data-price="32">
+            <div class="left"><div class="radio"></div><div><strong>1 Pouch — 30 nights</strong><small>Try NURIVO</small></div></div>
+            <div style="text-align:right"><strong>$32</strong><br><small>$1.06 / night</small></div>
+          </div>
+          <div class="bundle-option" data-qty="2" data-price="64">
+            <div class="left"><div class="radio"></div><div><strong>2 Pouches — 60 nights</strong><small>Most popular • Free shipping</small></div></div>
+            <div style="text-align:right"><strong>$64</strong><br><small>$1.06 / night</small></div>
+          </div>
+          <div class="bundle-option" data-qty="3" data-price="96">
+            <div class="left"><div class="radio"></div><div><strong>3 Pouches — 90 nights</strong><small>Best value • Free shipping</small></div></div>
+            <div style="text-align:right"><strong>$96</strong><br><small>$1.06 / night</small></div>
+          </div>
+        </div>
+
+        <div class="qty-add">
+          <div class="qty"><button id="qtyMinus">−</button><span id="qtyVal">1</span><button id="qtyPlus">+</button></div>
+          <button class="btn-primary add-btn" id="addToCartMain">Add to Cart — $32.00</button>
+        </div>
+        <div class="ship-note"><i>✓</i> Free worldwide tracked shipping • 30-night money-back guarantee • Results vary, cosmetic only</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how-it-works">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow" style="justify-content:center">The Nightly Ritual</div>
+      <h2>Four seconds of <i class="serif" style="color:var(--accent)">self-care</i> before bed</h2>
+    </div>
+    <div class="steps">
+      <div class="step-card"><div class="step-num">1</div><h4>Peel</h4><p>Take one tape from the pouch. Start with clean, dry lips. No balm underneath.</p><div class="step-visual">Peel from liner</div></div>
+      <div class="step-card"><div class="step-num">2</div><h4>Apply</h4><p>Press the lip-shaped tape gently over lightly closed lips. Smooth the edges.</p><div class="step-visual">Center & press</div></div>
+      <div class="step-card"><div class="step-num">3</div><h4>Sleep</h4><p>Leave on overnight and drift off. The occlusive layer holds hydration close.</p><div class="step-visual">8h overnight</div></div>
+      <div class="step-card"><div class="step-num">4</div><h4>Remove</h4><p>Peel away in the morning and rinse. Follow with your usual lip care.</p><div class="step-visual">Reveal soft lips</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON -->
+<section class="compare-sec">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow" style="justify-content:center">The $40 Test</div>
+      <h2>Before you book <i class="serif" style="color:var(--accent)">anything else…</i></h2>
+      <p style="margin-top:8px">A needle-free, painless first step. The plumped, hydrated look — none of the commitment.</p>
+    </div>
+    <div class="compare-table">
+      <div class="compare-head">Comparison</div><div class="compare-head" style="text-align:center">Lip Filler</div><div class="compare-head" style="text-align:center;background:var(--accentLight)">NURIVO</div>
+      <div class="compare-row"><div>Needles in your face</div><div>Yes</div><div><span class="badge-no">—</span></div></div>
+      <div class="compare-row"><div>Cost</div><div>Hundreds per syringe</div><div>$32 / 30 nights</div></div>
+      <div class="compare-row"><div>Commitment</div><div>Lasts 6-12 months</div><div>Wear when you like</div></div>
+      <div class="compare-row"><div>Risk of bumps / migration</div><div>Possible</div><div><span class="badge-no">—</span> topical</div></div>
+      <div class="compare-row"><div>Hydrates & conditions</div><div><span class="badge-no">✕</span></div><div><span class="badge-yes">✓</span></div></div>
+      <div class="compare-row"><div>Painless</div><div><span class="badge-no">✕</span></div><div><span class="badge-yes">✓</span></div></div>
+    </div>
+    <p class="compare-foot">NURIVO is a cosmetic product. It does not inject or permanently alter lips. Results are temporary and vary.</p>
+  </div>
+</section>
+
+<!-- INGREDIENTS -->
+<section class="ingredients" id="ingredients">
+  <div class="container ing-grid">
+    <div class="ing-media"><img src="https://www.designarena.ai/u/ef364254-72f1-4fa9-aa7b-030f9c3fcee4" alt="ingredients"></div>
+    <div>
+      <div class="eyebrow">What's Inside</div>
+      <h2 class="serif" style="font-size:42px;line-height:.95;margin-bottom:16px">Beauty ingredients <i style="color:var(--accent)">you'll love</i></h2>
+      <div class="ing-list">
+        <div class="ing-card"><div class="ing-icon">C</div><div><h4>Collagen</h4><p>A conditioning beauty protein for supple, smoother-looking lips. Helps support the look of firmness overnight.</p></div></div>
+        <div class="ing-card"><div class="ing-icon">H</div><div><h4>Hyaluronic Acid</h4><p>The hydration hero — binds moisture for a cushioned, fuller plump. Known to hold up to 1000x its weight in water.</p></div></div>
+        <div class="ing-card"><div class="ing-icon">E</div><div><h4>Vitamin E</h4><p>An antioxidant that soothes and protects delicate lip skin. Leaves lips feeling soft, not sticky.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="why">
+  <div class="container">
+    <div class="section-head"><div class="eyebrow" style="justify-content:center">Why NURIVO</div><h2>Premium design, <i class="serif" style="color:var(--accent)">simple ritual</i></h2></div>
+    <div class="why-grid">
+      <div class="why-list">
+        <div class="why-item"><div class="check">✓</div><div><strong>Premium, skin-safe adhesive</strong><span>Latex-free, stays put overnight, peels cleanly without residue.</span></div></div>
+        <div class="why-item"><div class="check">✓</div><div><strong>Needle-free, fully reversible</strong><span>Temporary cosmetic results — wear when you want, skip when you don't.</span></div></div>
+        <div class="why-item"><div class="check">✓</div><div><strong>Designed for real mornings</strong><span>No downtime, no swelling. Just softer-looking lips when you wake.</span></div></div>
+        <div class="why-item"><div class="check">✓</div><div><strong>Easy to use, easy to love</strong><span>One tape, one step. Fits in your palm, your travel bag, your routine.</span></div></div>
+      </div>
+      <div class="why-note">
+        <h4>A note on results</h4>
+        <p>NURIVO does not claim to permanently increase lip volume. Our tape creates an occlusive environment that helps lips look and feel more hydrated, smoother and temporarily more plump. Individual results vary. For external cosmetic use only.</p>
+        <div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap">
+          <span style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--border);padding:6px 10px;border-radius:999px">Vegan</span>
+          <span style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--border);padding:6px 10px;border-radius:999px">Cruelty-Free</span>
+          <span style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--border);padding:6px 10px;border-radius:999px">Dermatologist-Tested</span>
+          <span style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--border);padding:6px 10px;border-radius:999px">Latex-Free</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BUNDLE -->
+<section class="bundle-sec" id="bundle">
+  <div class="container">
+    <div class="bundle-panel">
+      <div class="bundle-left">
+        <div class="eyebrow">Bundle & Save</div>
+        <h3>Build your <i class="serif" style="color:var(--accent)">ritual</i></h3>
+        <p style="font-size:13px;color:var(--text2);font-weight:300">Most customers start with 2 pouches to stay consistent for 60 nights. Free shipping on 2+.</p>
+        <div class="bundle-options" id="bundleOptions">
+          <div class="bundle-opt" data-qty="1" data-price="32"><div><strong>1 Pouch</strong><br><small>30 tapes • $1.06/night</small></div><div class="price">$32</div></div>
+          <div class="bundle-opt popular" data-qty="2" data-price="64"><div><strong>2 Pouches</strong><br><small>60 tapes • Most Popular</small></div><div class="price">$64</div></div>
+          <div class="bundle-opt" data-qty="3" data-price="96"><div><strong>3 Pouches</strong><br><small>90 tapes • Best Value</small></div><div class="price">$96</div></div>
+        </div>
+      </div>
+      <div class="bundle-right">
+        <h4 style="font-family:'Instrument Serif',serif;font-size:22px">What you get</h4>
+        <ul>
+          <li><i>✓</i> NURIVO Plump Tape — lip-shaped, single-use</li>
+          <li><i>✓</i> Collagen + Hyaluronic Acid + Vitamin E</li>
+          <li><i>✓</i> Free worldwide tracked shipping on 2+</li>
+          <li><i>✓</i> 30-night money-back guarantee</li>
+          <li><i>✓</i> How-to card & storage pouch</li>
+        </ul>
+        <button class="btn-primary" id="bundleAdd" style="height:48px;width:100%">Add Bundle to Cart — $64</button>
+        <p style="font-size:11px;color:var(--text2);text-align:center;margin-top:10px;font-weight:300">Subscription-free. One-time purchase. Cancel anytime — there is no subscription.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow" style="justify-content:center">Loved at Bedtime</div>
+      <h2>Real routines, <i class="serif" style="color:var(--accent)">real reviews</i></h2>
+      <p>Placeholder reviews — structure ready for verified reviews. Replace with Judge.me / Loox / Shopify Reviews.</p>
+    </div>
+    <div class="review-grid">
+      <div class="r-card"><div class="r-top"><div class="r-stars">★★★★★</div><div class="r-date">2 days ago</div></div><p class="r-text">“Softest my lips have ever been in the morning. I was skeptical but NURIVO is now non-negotiable. No sting, no weird taste.”</p><div class="r-author"><div class="r-avatar">S</div><div><strong>Sarah M.</strong><br><span>Verified Buyer • 1 pouch</span></div></div></div>
+      <div class="r-card"><div class="r-top"><div class="r-stars">★★★★★</div><div class="r-date">5 days ago</div></div><p class="r-text">“I was going to book filler. Tried this first for a month and I'm actually happy. My lips look hydrated and a bit more defined.”</p><div class="r-author"><div class="r-avatar">J</div><div><strong>Jessica R.</strong><br><span>Verified Buyer • 2 pouches</span></div></div></div>
+      <div class="r-card"><div class="r-top"><div class="r-stars">★★★★★</div><div class="r-date">1 week ago</div></div><p class="r-text">“Easiest step in my routine and it actually stays on all night. Wake up and peel — lips are visibly softer.”</p><div class="r-author"><div class="r-avatar">E</div><div><strong>Emma T.</strong><br><span>Verified Buyer • 3 pouches</span></div></div></div>
+      <div class="r-card"><div class="r-top"><div class="r-stars">★★★★★</div><div class="r-date">1 week ago</div></div><p class="r-text">“Booked a filler consult, then tried this first. Two weeks in and I cancelled the appointment — my lips look plumper and I didn't spend hundreds.”</p><div class="r-author"><div class="r-avatar">C</div><div><strong>Chloe B.</strong><br><span>Verified Buyer • 2 pouches</span></div></div></div>
+      <div class="r-card"><div class="r-top"><div class="r-stars">★★★★☆</div><div class="r-date">2 weeks ago</div></div><p class="r-text">“I sleep with my mouth open and always wake with cracked lips. Now I wake up soft every morning. Wish I found this years ago.”</p><div class="r-author"><div class="r-avatar">M</div><div><strong>Maya P.</strong><br><span>Verified Buyer • 1 pouch</span></div></div></div>
+      <div class="r-card"><div class="r-top"><div class="r-stars">★★★★★</div><div class="r-date">2 weeks ago</div></div><p class="r-text">“The 2-pouch bundle is a no-brainer — 20% off and it just shows up. It's the one step in my routine I never skip.”</p><div class="r-author"><div class="r-avatar">H</div><div><strong>Hannah K.</strong><br><span>Verified Buyer • 2 pouches</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- INFO DUO -->
+<section class="info-duo">
+  <div class="info-box"><div class="info-icon">↺</div><div><h4>30-Night Money-Back Guarantee</h4><p>Try the full ritual. If your lips don't look softer and happier within 30 nights, we'll refund you — pouch open or not. No hassle.</p></div></div>
+  <div class="info-box"><div class="info-icon">✈</div><div><h4>Free Worldwide Tracked Shipping</h4><p>Every order is tracked from our studio to your door. 2+ pouches ship free. Carbon-neutral delivery where available.</p></div></div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="container faq-inner">
+    <div class="section-head" style="margin-bottom:0"><div class="eyebrow" style="justify-content:center">Good to Know</div><h2>Questions, <i class="serif" style="color:var(--accent)">answered</i></h2></div>
+    <div class="faq-list" id="faqList">
+      <div class="faq-item open"><button class="faq-q">What is NURIVO Plump Tape? <span class="icon">+</span></button><div class="faq-a"><p>A soft, single-use overnight lip tape infused with collagen, hyaluronic acid and vitamin E. It holds moisture against lips while you sleep so they look fuller, smoother and more hydrated by morning. It's a cosmetic product, not a filler.</p></div></div>
+      <div class="faq-item"><button class="faq-q">How does NURIVO Plump Tape work? <span class="icon">+</span></button><div class="faq-a"><p>Like a hydrating occlusive patch for your lips. The tape creates a seal that prevents moisture loss overnight while the conditioning ingredients sit close to skin. Temporary cosmetic effect.</p></div></div>
+      <div class="faq-item"><button class="faq-q">How do I use it? <span class="icon">+</span></button><div class="faq-a"><p>Start with clean, dry lips. Peel one tape from the liner, center over lightly closed lips, press gently, sleep, peel off in the morning. Use nightly for best-looking results.</p></div></div>
+      <div class="faq-item"><button class="faq-q">How long should I wear it? <span class="icon">+</span></button><div class="faq-a"><p>Overnight — typically 6-8 hours. Remove in the morning. Single-use only, do not reuse a tape.</p></div></div>
+      <div class="faq-item"><button class="faq-q">Is it reusable? What is included? <span class="icon">+</span></button><div class="faq-a"><p>Each tape is single-use. One pouch includes 30 tapes = 30-night supply, plus a how-to card. 2 and 3-pouch bundles include 60 and 90 tapes.</p></div></div>
+      <div class="faq-item"><button class="faq-q">How long does shipping take? <span class="icon">+</span></button><div class="faq-a"><p>Tracked worldwide: US 3-6 days, UK/EU 5-8 days, rest of world 6-12 days. Free tracked shipping on 2+ pouches.</p></div></div>
+      <div class="faq-item"><button class="faq-q">What is the return policy? <span class="icon">+</span></button><div class="faq-a"><p>30-night money-back guarantee. Try it for up to 30 nights. If you're not happy, email us for a full refund — even if pouch is opened. See Shipping & Returns for details.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL -->
+<section class="final">
+  <div class="container">
+    <div class="final-card">
+      <h2>Make NURIVO part of<br>your <i>nightly ritual</i></h2>
+      <p>Join thousands who swapped harsh scrubs and heavy gloss for a soft, overnight tape that works while you sleep.</p>
+      <a href="#shop" class="btn-primary" style="height:48px;padding:0 28px;position:relative">Shop Plump Tape — $32</a>
+      <div style="margin-top:16px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.6;position:relative">Free tracked shipping • 30-night guarantee</div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer id="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="logo">NURIVO.</span>
+        <p>Made for lips that mean it.<br>Overnight lip tape infused with collagen, hyaluronic acid & vitamin E. Cosmetic, temporary results.</p>
+        <div style="margin-top:16px;display:flex;gap:8px"><span style="width:28px;height:28px;border-radius:50%;border:1px solid var(--border);display:grid;place-items:center;font-size:12px">IG</span><span style="width:28px;height:28px;border-radius:50%;border:1px solid var(--border);display:grid;place-items:center;font-size:12px">TT</span></div>
+      </div>
+      <div class="foot-links"><h5>Shop</h5><ul><li><a href="#shop">NURIVO Plump Tape</a></li><li><a href="#how-it-works">How It Works</a></li><li><a href="#ingredients">Ingredients</a></li><li><a href="#bundle">Bundle & Save</a></li><li><a href="#faq">FAQ</a></li></ul></div>
+      <div class="foot-links"><h5>Help</h5><ul><li><a href="#">Shipping & Returns</a></li><li><a href="#">Contact Us</a></li><li><a href="#">Track My Order</a></li><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms of Service</a></li></ul></div>
+      <div class="foot-links"><h5>Get 10% off</h5><p style="font-size:13px;color:var(--text2);font-weight:300;line-height:1.5">Join the list for 10% off your first order — plus lip tips & early access.</p><div class="newsletter"><input id="emailInput" placeholder="Email address"><button class="btn-primary" id="newsBtn" style="height:40px">Join</button></div><p style="font-size:10px;color:var(--text2);margin-top:8px">No spam, ever. Unsubscribe anytime.</p></div>
+    </div>
+    <div class="foot-bottom"><div>© 2026 NURIVO. All rights reserved. • Cosmetic product, not a medical device.</div><div style="display:flex;gap:16px"><span>US • Free Shipping over $50</span><span>Secure checkout</span></div></div>
+  </div>
+</footer>
+
+<div class="overlay" id="overlay"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-head"><h4>Your Cart</h4><button id="closeCart" class="icon-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 18L18 6M6 6l12 12"/></svg></button></div>
+  <div class="cart-body" id="cartBody"><div class="empty">Your cart is empty. Add a pouch to start your ritual.</div></div>
+  <div class="cart-foot" id="cartFoot" style="display:none">
+    <div class="row"><span>Subtotal</span><span id="cartSub">$0.00</span></div>
+    <div class="row"><span>Shipping</span><span style="color:var(--text2)">Calculated at checkout</span></div>
+    <div class="row total"><span>Total</span><span id="cartTotal">$0.00</span></div>
+    <button class="btn-primary" style="height:48px;width:100%" id="checkoutBtn">Checkout • Secure</button>
+    <p style="font-size:11px;color:var(--text2);text-align:center;font-weight:300">30-night guarantee • Free tracked shipping on 2+</p>
+  </div>
+</div>
+
+<div class="toast" id="toast"><i>✓</i><span id="toastMsg">Added to cart</span></div>
+
+<script>
+const $ = s => document.querySelector(s);
+const $$ = s => document.querySelectorAll(s);
+
+let cart = [];
+let selectedBundleQty = 1;
+let selectedBundlePrice = 32;
+let mainQty = 1;
+let bundleSelectedQty = 2;
+let bundleSelectedPrice = 64;
+
+function formatMoney(n){ return `$${n.toFixed(2)}`; }
+
+function updateCartUI(){
+  const body = $('#cartBody');
+  const foot = $('#cartFoot');
+  const count = $('#cartCount');
+  const totalQty = cart.reduce((a,b)=>a+b.qty,0);
+  if(totalQty>0){ count.style.display='grid'; count.textContent=totalQty; } else { count.style.display='none'; }
+  if(cart.length===0){
+    body.innerHTML = `<div class="empty">Your cart is empty. Add a pouch to start your ritual.</div>`;
+    foot.style.display='none';
+    return;
+  }
+  foot.style.display='grid';
+  body.innerHTML = cart.map((it,i)=>`
+    <div class="c-item">
+      <img src="https://www.designarena.ai/u/ef364254-72f1-4fa9-aa7b-030f9c3fcee4" alt="">
+      <div class="c-item-info"><strong>${it.name}</strong><small>${it.qty} × ${formatMoney(it.price/it.qty)} • ${it.nights} nights</small></div>
+      <div class="c-qty"><button data-act="dec" data-i="${i}">−</button><span>${it.qty}</span><button data-act="inc" data-i="${i}">+</button></div>
+    </div>
+  `).join('');
+  const sub = cart.reduce((a,b)=>a+b.price,0);
+  $('#cartSub').textContent = formatMoney(sub);
+  $('#cartTotal').textContent = formatMoney(sub);
+  body.querySelectorAll('[data-act]').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const idx = +btn.dataset.i;
+      if(btn.dataset.act==='inc'){ cart[idx].qty++; cart[idx].price = (cart[idx].unitPrice*cart[idx].qty); }
+      else { cart[idx].qty--; cart[idx].price = (cart[idx].unitPrice*cart[idx].qty); if(cart[idx].qty<=0) cart.splice(idx,1); }
+      updateCartUI();
+    });
+  });
+}
+
+function addToCart({name, qty, unitPrice, nights}){
+  const existing = cart.find(c=>c.name===name && c.unitPrice===unitPrice);
+  if(existing){ existing.qty+=qty; existing.price = existing.unitPrice*existing.qty; }
+  else { cart.push({name, qty, unitPrice, price:unitPrice*qty, nights}); }
+  updateCartUI();
+  openCart();
+  showToast(`${qty} × ${name} added`);
+}
+
+function openCart(){ $('#cartDrawer').classList.add('open'); $('#overlay').classList.add('open'); document.body.style.overflow='hidden'; }
+function closeCart(){ $('#cartDrawer').classList.remove('open'); $('#overlay').classList.remove('open'); document.body.style.overflow=''; }
+function showToast(msg){ $('#toastMsg').textContent=msg; const t=$('#toast'); t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2600); }
+
+$('#cartBtn').addEventListener('click', openCart);
+$('#closeCart').addEventListener('click', closeCart);
+$('#overlay').addEventListener('click', closeCart);
+
+// inline bundle selection
+$$('#inlineBundle .bundle-option').forEach(opt=>{
+  opt.addEventListener('click',()=>{
+    $$('#inlineBundle .bundle-option').forEach(o=>o.classList.remove('selected'));
+    opt.classList.add('selected');
+    selectedBundleQty = +opt.dataset.qty;
+    selectedBundlePrice = +opt.dataset.price;
+    $('#addToCartMain').textContent = `Add to Cart — $${(selectedBundlePrice*mainQty).toFixed(2)}`;
+  });
+});
+$('#qtyMinus').addEventListener('click',()=>{ if(mainQty>1){ mainQty--; $('#qtyVal').textContent=mainQty; $('#addToCartMain').textContent=`Add to Cart — $${(selectedBundlePrice*mainQty).toFixed(2)}`; }});
+$('#qtyPlus').addEventListener('click',()=>{ mainQty++; $('#qtyVal').textContent=mainQty; $('#addToCartMain').textContent=`Add to Cart — $${(selectedBundlePrice*mainQty).toFixed(2)}`; });
+
+$('#addToCartMain').addEventListener('click',()=>{
+  const name = selectedBundleQty===1? 'NURIVO Plump Tape — 1 Pouch' : `NURIVO Plump Tape — ${selectedBundleQty} Pouches`;
+  addToCart({name, qty:mainQty, unitPrice:selectedBundlePrice, nights:selectedBundleQty*30*mainQty});
+});
+
+// bundle panel
+$$('#bundleOptions .bundle-opt').forEach(opt=>{
+  opt.addEventListener('click',()=>{
+    $$('#bundleOptions .bundle-opt').forEach(o=>o.classList.remove('popular'));
+    opt.classList.add('popular');
+    bundleSelectedQty = +opt.dataset.qty;
+    bundleSelectedPrice = +opt.dataset.price;
+    $('#bundleAdd').textContent = `Add Bundle to Cart — $${bundleSelectedPrice}`;
+  });
+});
+$('#bundleAdd').addEventListener('click',()=>{
+  const name = bundleSelectedQty===1? 'NURIVO Plump Tape — 1 Pouch' : `NURIVO Plump Tape — ${bundleSelectedQty} Pouches`;
+  addToCart({name, qty:1, unitPrice:bundleSelectedPrice, nights:bundleSelectedQty*30});
+});
+
+// thumbs
+$$('.media-thumbs button').forEach(b=>{
+  b.addEventListener('click',()=>{
+    $$('.media-thumbs button').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    $('#mainProdImg').src = b.dataset.img;
+  });
+});
+
+// FAQ
+$$('.faq-item .faq-q').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const item = btn.parentElement;
+    const wasOpen = item.classList.contains('open');
+    $$('.faq-item').forEach(i=>i.classList.remove('open'));
+    if(!wasOpen) item.classList.add('open');
+  });
+});
+
+// mobile menu
+$('#menuBtn').addEventListener('click',()=>{ $('#mobileMenu').classList.toggle('open'); });
+$$('#mobileMenu a').forEach(a=>a.addEventListener('click',()=>$('#mobileMenu').classList.remove('open')));
+
+// newsletter
+$('#newsBtn').addEventListener('click',()=>{
+  const v = $('#emailInput').value.trim();
+  if(!v || !v.includes('@')){ showToast('Please enter a valid email'); return; }
+  showToast('Welcome to NURIVO — 10% off code: NURIVO10');
+  $('#emailInput').value='';
+});
+
+// checkout dummy
+$('#checkoutBtn').addEventListener('click',()=>{ showToast('Redirecting to secure checkout…'); });
+
+// smooth scroll offset for sticky header handled by CSS scroll-behavior
+</script>
+</body>
+</html>
